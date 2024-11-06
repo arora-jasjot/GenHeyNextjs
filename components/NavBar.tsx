@@ -16,7 +16,7 @@ export default function NavBar() {
     <Navbar className="w-full">
       <NavbarBrand>
         <Link isExternal aria-label="HeyGen" href="https://app.heygen.com/">
-          <Image src={'https://codewave.com/wp-content/uploads/2024/03/codew-logo.png'} alt="Codewave" height={28} width={133} />
+          <Image src={'/Taxease.webp'} alt="Codewave" height={28} width={133} />
         </Link>
         <div className="bg-gradient-to-br from-sky-300 to-indigo-500 bg-clip-text ml-4">
           <p className="text-xl font-semibold text-transparent">
@@ -24,11 +24,11 @@ export default function NavBar() {
           </p>
         </div>
       </NavbarBrand>
-      <NavbarContent justify="center">
+      {/* <NavbarContent justify="center">
         <NavbarItem className="flex flex-row items-center gap-4">
           <ThemeSwitch />
         </NavbarItem>
-      </NavbarContent>
+      </NavbarContent> */}
     </Navbar>
   );
 }
