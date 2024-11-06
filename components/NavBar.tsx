@@ -16,7 +16,7 @@ export default function NavBar() {
     <Navbar className="w-full">
       <NavbarBrand>
         <Link isExternal aria-label="HeyGen" href="https://app.heygen.com/">
-          <Image src={'/Taxease.webp'} alt="Codewave" height={28} width={133} />
+          <Image src={'/Taxease.webp'} alt="Codewave" height={28} width={133} style={{filter:"invert(90%)"}}/>
         </Link>
         <div className="bg-gradient-to-br from-sky-300 to-indigo-500 bg-clip-text ml-4">
           <p className="text-xl font-semibold text-transparent">
