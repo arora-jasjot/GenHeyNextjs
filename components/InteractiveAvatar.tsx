@@ -78,7 +78,7 @@ export default function InteractiveAvatar() {
     try {
       const res = await avatar.current.createStartAvatar({
         quality: AvatarQuality.High,
-        avatarName: 'eb0a8cc8046f476da551a5559fbb5c82',
+        avatarName: 'ef08039a41354ed5a20565db899373f3',
         // knowledgeId: knowledgeId, // Or use a custom `knowledgeBase`.
         knowledgeBase: `
           PERSONA:
@@ -140,7 +140,7 @@ export default function InteractiveAvatar() {
           _____
           `,
         voice: {
-          rate: 1.5, // 0.5 ~ 1.5
+          rate: 2.0,
           emotion: VoiceEmotion.EXCITED,
         },
         
@@ -219,18 +219,11 @@ export default function InteractiveAvatar() {
               </video>
               <div className="flex flex-col gap-2 absolute bottom-3 right-3">
                 <Button
-                  className="bg-gradient-to-tr from-indigo-500 to-indigo-300 text-white rounded-lg"
-                  size="md"
-                  variant="shadow"
-                  onClick={handleInterrupt}
-                >
-                  Interrupt task
-                </Button>
-                <Button
-                  className="bg-gradient-to-tr from-indigo-500 to-indigo-300  text-white rounded-lg"
+                  className=" rounded-lg"
                   size="md"
                   variant="shadow"
                   onClick={endSession}
+                  style={{backgroundColor:'#FFBF23', color:'#000000'}}
                 >
                   End session
                 </Button>
@@ -239,10 +232,11 @@ export default function InteractiveAvatar() {
           ) : !isLoadingSession ? (
             <div className="h-full justify-center items-center flex flex-col gap-8 w-[500px] self-center">
               <Button
-                className="bg-gradient-to-tr from-indigo-500 to-indigo-300 w-full text-white"
+                className=" w-full text-white"
                 size="md"
                 variant="shadow"
                 onClick={startSession}
+                style={{backgroundColor:'#FFBF23', color:'#000000'}}
               >
                 Start session
               </Button>

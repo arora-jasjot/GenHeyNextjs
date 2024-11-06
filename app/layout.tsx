@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 
 import { Fira_Code as FontMono, Inter as FontSans } from "next/font/google";
 import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     template: `%s - R&D Tax Incentive Program`,
   },
   icons: {
-    icon: "/heygen-logo.png",
+    // icon: "/.png",
   },
 };
 
@@ -51,6 +52,7 @@ export default function RootLayout({
           <main className="relative flex flex-col h-screen w-screen">
             <NavBar />
             {children}
+            <Footer/>
           </main>
         </Providers>
       </body>
