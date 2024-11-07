@@ -2,14 +2,12 @@ import type { StartAvatarResponse } from "@heygen/streaming-avatar";
 
 import StreamingAvatar, {
   AvatarQuality,
-  StreamingEvents, TaskMode, TaskType, VoiceEmotion,
+  StreamingEvents,
+  TaskMode,
+  TaskType,
+  VoiceEmotion,
 } from "@heygen/streaming-avatar";
-import {
-  Button,
-  Card,
-  CardBody,
-  Spinner,
-} from "@nextui-org/react";
+import { Button, Card, CardBody, Spinner } from "@nextui-org/react";
 import { useEffect, useRef, useState } from "react";
 import { useMemoizedFn, usePrevious } from "ahooks";
 
@@ -20,7 +18,7 @@ export default function InteractiveAvatar() {
   const [debug, setDebug] = useState<string>();
   const [knowledgeId, setKnowledgeId] = useState<string>("");
   const [avatarId, setAvatarId] = useState<string>("");
-  const [language, setLanguage] = useState<string>('en');
+  const [language, setLanguage] = useState<string>("en");
 
   const [data, setData] = useState<StartAvatarResponse>();
   const [text, setText] = useState<string>("");
@@ -66,6 +64,26 @@ export default function InteractiveAvatar() {
     avatar.current?.on(StreamingEvents.STREAM_READY, (event) => {
       console.log(">>>>> Stream ready:", event.detail);
       setStream(event.detail);
+      const startConversation = async () => {
+        if (!avatar.current) {
+          setDebug("Avatar API not initialized");
+
+          return;
+        }
+
+        if (avatar.current) {
+          await avatar.current
+            .speak({
+              text: "Hello, I'm Anna​, a tax consultant. Feel free to ask me anything about R and D tax benefits for companies in Australia.",
+              taskType: TaskType.REPEAT,
+              taskMode: TaskMode.SYNC,
+            })
+            .catch((e) => {
+              setDebug(e.message);
+            });
+        }
+      };
+      startConversation();
     });
     avatar.current?.on(StreamingEvents.USER_START, (event) => {
       console.log(">>>>> User started talking:", event);
@@ -75,18 +93,20 @@ export default function InteractiveAvatar() {
       console.log(">>>>> User stopped talking:", event);
       setIsUserTalking(false);
     });
-  // Wait until the stream is ready to begin the conversation
-  avatar.current?.on(StreamingEvents.STREAM_READY, async (event) => {
-    console.log(">>>>> Stream ready:", event.detail);
-    setStream(event.detail);
+    // Wait until the stream is ready to begin the conversation
+    avatar.current?.on(StreamingEvents.STREAM_READY, async (event) => {
+      console.log(">>>>> Stream ready:", event.detail);
+      setStream(event.detail);
 
-    // After the stream is ready, pass text input to the avatar
-    setText("Hello, I'm Anna​, a tax consultant. Feel free to ask me anything about R and D tax benefits for companies in Australia.");
-  });
+      // After the stream is ready, pass text input to the avatar
+      setText(
+        "Hello, I'm Anna​, a tax consultant. Feel free to ask me anything about R and D tax benefits for companies in Australia."
+      );
+    });
     try {
       const res = await avatar.current.createStartAvatar({
         quality: AvatarQuality.High,
-        avatarName: 'ef08039a41354ed5a20565db899373f3',
+        avatarName: "ef08039a41354ed5a20565db899373f3",
         // knowledgeId: knowledgeId, // Or use a custom `knowledgeBase`.
         knowledgeBase: `
           PERSONA:
@@ -154,10 +174,10 @@ export default function InteractiveAvatar() {
           Response Style: Add: "Keep responses to 2-3 lines maximum, and follow up with 'Would you like more details?' if the answer might be lengthy."
           `,
         voice: {
-          rate: 1.2,
+          rate: 1,
           emotion: VoiceEmotion.EXCITED,
         },
-        
+
         language: language,
       });
 
@@ -177,11 +197,9 @@ export default function InteractiveAvatar() {
 
       return;
     }
-    await avatar.current
-      .interrupt()
-      .catch((e) => {
-        setDebug(e.message);
-      });
+    await avatar.current.interrupt().catch((e) => {
+      setDebug(e.message);
+    });
   }
   async function endSession() {
     await avatar.current?.stopAvatar();
@@ -237,7 +255,7 @@ export default function InteractiveAvatar() {
                   size="md"
                   variant="shadow"
                   onClick={endSession}
-                  style={{backgroundColor:'#FFBF23', color:'#000000'}}
+                  style={{ backgroundColor: "#FFBF23", color: "#000000" }}
                 >
                   End session
                 </Button>
@@ -250,7 +268,7 @@ export default function InteractiveAvatar() {
                 size="md"
                 variant="shadow"
                 onClick={startSession}
-                style={{backgroundColor:'#FFBF23', color:'#000000'}}
+                style={{ backgroundColor: "#FFBF23", color: "#000000" }}
               >
                 Start session
               </Button>
