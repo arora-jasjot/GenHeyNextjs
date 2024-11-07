@@ -154,7 +154,7 @@ export default function InteractiveAvatar() {
           Response Style: Add: "Keep responses to 2-3 lines maximum, and follow up with 'Would you like more details?' if the answer might be lengthy."
           `,
         voice: {
-          rate: 1.5,
+          rate: 1.2,
           emotion: VoiceEmotion.EXCITED,
         },
         
