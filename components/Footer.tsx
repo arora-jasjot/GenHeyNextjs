@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div style={{width:"100%", display:'flex', justifyContent:'center', alignItems:'center', marginBottom:'10px'}}>Powered by&nbsp;<Link href="https://codewave.com/" target='_blank'> Codewave</Link></div>
+    <div style={{width:"100%", display:'flex', justifyContent:'center', alignItems:'center', marginBottom:'10px', opacity:'50%'}}>Powered by&nbsp;<Link href="https://codewave.com/" target='_blank'> Codewave</Link></div>
   )
 }
 
