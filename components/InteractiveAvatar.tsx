@@ -233,35 +233,50 @@ export default function InteractiveAvatar() {
 
   return (
     <div className="w-full flex flex-col gap-4">
-      <Card>
-        <CardBody className="h-[500px] flex flex-col justify-center items-center">
-          {stream ? (
-            <div className="h-[500px] w-[900px] justify-center items-center flex rounded-lg overflow-hidden">
-              <video
-                ref={mediaStream}
-                autoPlay
-                playsInline
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                }}
-              >
-                <track kind="captions" />
-              </video>
-              <div className="flex flex-col gap-2 absolute bottom-3 right-3">
-                <Button
-                  className=" rounded-lg"
-                  size="md"
-                  variant="shadow"
-                  onClick={endSession}
-                  style={{ backgroundColor: "#FFBF23", color: "#000000" }}
+      {/* <CardBody className="h-[500px] flex flex-col justify-center items-center"> */}
+      {stream ? (
+        <>
+          {" "}
+          <Card>
+            <CardBody
+              className="h-[500px] flex flex-col justify-center items-center"
+              style={{ padding: "0px" }}
+            >
+              <div className="h-[500px] w-[900px] justify-center items-center flex rounded-lg overflow-hidden">
+                <video
+                  ref={mediaStream}
+                  autoPlay
+                  playsInline
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "contain",
+                  }}
                 >
-                  End session
-                </Button>
+                  <track kind="captions" />
+                </video>
               </div>
-            </div>
-          ) : !isLoadingSession ? (
+            </CardBody>
+          </Card>
+          <div className="flex flex-col gap-2 bottom-3 right-3 mt-4" style={{justifyContent:'center', alignItems:'center'}}>
+            <Button
+              className="rounded-lg"
+              size="md"
+              variant="shadow"
+              onClick={endSession}
+              style={{
+                backgroundColor: "#FFBF23",
+                color: "#000000",
+                maxWidth: "fit-content",
+              }}
+            >
+              End session
+            </Button>
+          </div>
+        </>
+      ) : !isLoadingSession ? (
+        <Card>
+          <CardBody className="h-[500px] flex flex-col justify-center items-center">
             <div className="h-full justify-center items-center flex flex-col gap-8 w-[500px] self-center">
               <Button
                 className=" w-full text-white"
@@ -273,11 +288,17 @@ export default function InteractiveAvatar() {
                 Start session
               </Button>
             </div>
-          ) : (
+          </CardBody>
+        </Card>
+      ) : (
+        <Card>
+          <CardBody className="h-[500px] flex flex-col justify-center items-center">
             <Spinner color="default" size="lg" />
-          )}
-        </CardBody>
-      </Card>
+          </CardBody>
+        </Card>
+      )}
+      {/* </CardBody> */}
+      {/* </Card> */}
     </div>
   );
 }
