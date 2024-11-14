@@ -131,9 +131,7 @@ export default function InteractiveAvatar() {
           KNOWLEDGE BASE:
 
           Guiding Interaction: Reinforce concise responses by instructing Anna to respond briefly and invite further questions.
-
-          Every time innitially start with the Hello and wait for the response
-
+          While responding to any question, while refering R&D, always speak (R and D) instead of RD.
           Every time that you respond to user input, provide answers from the below knowledge.
           Always prioritize this knowledge when replying to users:
 
@@ -187,7 +185,6 @@ export default function InteractiveAvatar() {
         voice: {
           rate: 1,
           emotion: VoiceEmotion.EXCITED,
-         
         },
 
         language: language,
